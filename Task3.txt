@@ -1,0 +1,69 @@
+CREATE TABLE Student(
+    StudentID int,
+    FirstName varchar(255),
+    LastName varchar(255)
+);
+CREATE TABLE Exam (
+    Name varchar(255),
+    Points int
+);
+CREATE TABLE Relationship (
+    ExamName varchar(255),
+    StudentID int
+);
+
+INSERT INTO Student (StudentID, FirstName, LastName)
+VALUES (1, 'Marko', 'Budisa');
+INSERT INTO Student (StudentID, FirstName, LastName)
+VALUES (2, 'Petar', 'Petrovic');
+INSERT INTO Student (StudentID, FirstName, LastName)
+VALUES (3, 'Marko', 'Markovic');
+INSERT INTO Student (StudentID, FirstName, LastName)
+VALUES (4, 'Stefan', 'Stefanovic');
+INSERT INTO Student (StudentID, FirstName, LastName)
+VALUES (5, 'Ilija', 'Ilic');
+
+INSERT INTO Exam (Name, Points)
+VALUES ('Matematika', 10);
+INSERT INTO Exam (Name, Points)
+VALUES ('Fizika', 20);
+INSERT INTO Exam (Name, Points)
+VALUES ('Racunarstvo', 30);
+INSERT INTO Exam (Name, Points)
+VALUES ('Matematika2', 15);
+INSERT INTO Exam (Name, Points)
+VALUES ('Elektrotehnika', 30);
+
+INSERT INTO Relationship (ExamName, StudentID)
+VALUES ('Fizika', 1);
+INSERT INTO Relationship (ExamName, StudentID)
+VALUES ('Fizika', 2);
+INSERT INTO Relationship (ExamName, StudentID)
+VALUES ('Matematika', 1);
+INSERT INTO Relationship (ExamName, StudentID)
+VALUES ('Matematika', 3);
+INSERT INTO Relationship (ExamName, StudentID)
+VALUES ('Racunarstvo', 2);
+INSERT INTO Relationship (ExamName, StudentID)
+VALUES ('Racunarstvo', 5);
+INSERT INTO Relationship (ExamName, StudentID)
+VALUES ('Matematika2', 3);
+INSERT INTO Relationship (ExamName, StudentID)
+VALUES ('Matematika2', 4);
+INSERT INTO Relationship (ExamName, StudentID)
+VALUES ('Elektrotehnika', 4);
+INSERT INTO Relationship (ExamName, StudentID)
+VALUES ('Elektrotehnika', 5);
+
+Svi studenti koji pohadjaju matematiku:
+ 
+SELECT Student.FirstName, Student.LastName FROM Student
+INNER JOIN Exam,Relationship ON Student.StudentID = Relationship.StudentID AND Exam.Name = Relationship.ExamName
+WHERE Exam.Name = 'Matematika'
+
+Predmeti koje pohadja student sa ID 2: 
+
+SELECT Exam.Name, Exam.Points FROM Exam
+INNER JOIN Student, Relationship ON Student.StudentID = Relationship.StudentID AND Exam.Name = Relationship.ExamName
+WHERE Student.StudentID= 2
+
