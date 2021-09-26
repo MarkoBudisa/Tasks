@@ -6,7 +6,6 @@ namespace Task2
     {
 		public static void Merge(Post[] posts, int start, int mid, int end)
 		{
-			//Kreira se privremeni niz
 			Post[] temp = new Post[end - start + 1];
 
 			int i = start, j = mid + 1, k = 0;
